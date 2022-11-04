@@ -1,14 +1,21 @@
 import { FormWrapper } from "../wrapper/FormWrapper";
 
+type UserData = {
+  firstName: string;
+  lastName: string;
+  age: string;
+};
+
+type UserFormProps = UserData & {
+  updateFields: (fields: Partial<UserData>) => void;
+};
+
 const UserForm = ({
   firstName,
   lastName,
   age,
-}: {
-  firstName: string;
-  lastName: string;
-  age: string;
-}) => {
+  updateFields,
+}: UserFormProps) => {
   return (
     <FormWrapper title="Account Details">
       <div style={{ alignItems: "center" }}>
@@ -16,6 +23,7 @@ const UserForm = ({
           <label style={{ fontSize: "20px" }}>First Name: </label>
           <input
             value={firstName}
+            onChange={(e) => updateFields({ firstName: e.target.value })}
             autoFocus
             required
             type="text"
@@ -26,6 +34,7 @@ const UserForm = ({
           <label style={{ fontSize: "20px" }}>Last Name: </label>
           <input
             value={lastName}
+            onChange={(e) => updateFields({ lastName: e.target.value })}
             autoFocus
             required
             type="text"
@@ -36,6 +45,7 @@ const UserForm = ({
           <label style={{ fontSize: "20px" }}>Age: </label>
           <input
             value={age}
+            onChange={(e) => updateFields({ age: e.target.value })}
             min={1}
             required
             type="number"

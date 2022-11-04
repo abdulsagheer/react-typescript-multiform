@@ -31,15 +31,22 @@ const INITIAL_DATA: FormData = {
 function App() {
   const [data, setData] = useState(INITIAL_DATA);
 
+  const updateFields = (fields: Partial<FormData>) => {
+    setData((prev) => {
+      return { ...prev, ...fields };
+    });
+  };
+
   const { steps, currentStepIndex, step, back, next } = useMultiStepForm([
-    <UserForm {...data} />,
-    <AddressForm {...data} />,
-    <AccountForm {...data} />,
+    <UserForm {...data} updateFields={updateFields} />,
+    <AddressForm {...data} updateFields={updateFields} />,
+    <AccountForm {...data} updateFields={updateFields} />,
   ]);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     next();
+    alert("Account Created Successfully...");
   }
 
   return (

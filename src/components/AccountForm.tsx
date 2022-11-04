@@ -1,12 +1,15 @@
 import { FormWrapper } from "../wrapper/FormWrapper";
 
-const AccountForm = ({
-  email,
-  password,
-}: {
+type UserData = {
   email: string;
   password: string;
-}) => {
+};
+
+type UserFormProps = UserData & {
+  updateFields: (fields: Partial<UserData>) => void;
+};
+
+const AccountForm = ({ email, password, updateFields }: UserFormProps) => {
   return (
     <FormWrapper title="Account Credentials">
       <div style={{ margin: "25px" }}>
@@ -16,6 +19,7 @@ const AccountForm = ({
           required
           type="text"
           value={email}
+          onChange={(e) => updateFields({ email: e.target.value })}
           style={{ padding: "5px", borderRadius: "6px", width: "25%" }}
         />
       </div>
@@ -26,6 +30,7 @@ const AccountForm = ({
           required
           type="password"
           value={password}
+          onChange={(e) => updateFields({ password: e.target.value })}
           style={{ padding: "5px", borderRadius: "6px", width: "25%" }}
         />
       </div>
