@@ -1,6 +1,12 @@
 import { FormWrapper } from "../wrapper/FormWrapper";
 
-const AccountForm = () => {
+const AccountForm = ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
   return (
     <FormWrapper title="Account Credentials">
       <div style={{ margin: "25px" }}>
@@ -9,6 +15,7 @@ const AccountForm = () => {
           autoFocus
           required
           type="text"
+          value={email}
           style={{ padding: "5px", borderRadius: "6px", width: "25%" }}
         />
       </div>
@@ -18,6 +25,7 @@ const AccountForm = () => {
           autoFocus
           required
           type="password"
+          value={password}
           style={{ padding: "5px", borderRadius: "6px", width: "25%" }}
         />
       </div>
